@@ -50,4 +50,4 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 top = api.ranking(GameMode.OSU, RankingType.PERFORMANCE)
 print(top.ranking[0].user.username)
-bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+#bot.run(token, log_handler=handler, log_level=logging.DEBUG)
