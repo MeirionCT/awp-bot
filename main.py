@@ -1,9 +1,14 @@
+print("1")
 from xml.etree.ElementTree import tostring
-
+print("2")
 import discord
+print("3")
 from discord.ext import commands
+print("4")
 import logging
+print("5")
 from dotenv import load_dotenv
+print("6")
 import os
 
 from ossapi import Ossapi, UserLookupKey, RankingType, GameMode  # Python wrapper for the osu! API. Documentation: https://tybug.dev/ossapi/index.html
