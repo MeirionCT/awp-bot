@@ -9,7 +9,7 @@ import os
 from ossapi import Ossapi, UserLookupKey, RankingType, GameMode  # Python wrapper for the osu! API. Documentation: https://tybug.dev/ossapi/index.html
 
 load_dotenv()
-token = os.getenv('DISCORD_TOKEN')
+token = os.getenv("DISCORD_TOKEN")
 print(token)
 
 # discord api stuff
@@ -25,23 +25,22 @@ api = Ossapi(client_id,client_secret)
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-@bot.event
-async def on_ready():
-    print(f"Test message here, {bot.user.name}")
+#@bot.event
+#async def on_ready():
+#    print(f"Test message here, {bot.user.name}")
 
-@bot.event
-async def on_message(message):
-        if message.author == bot.user:
-            return
-        if "arrecio" in message.content.lower():
-            await message.channel.send("Que hace mucho frio")
+#@bot.event
+#async def on_message(message):
+#       if message.author == bot.user:
+#           return
+#       if "arrecio" in message.content.lower():
+#            await message.channel.send("Que hace mucho frio")
+#        await bot.process_commands(message)
 
-        await bot.process_commands(message)
 
-
-@bot.command()
-async def rank(ctx, arg):
-    await ctx.send(arg)
+#@bot.command()
+#async def rank(ctx, arg):
+#    await ctx.send(arg)
 
 
 top = api.ranking(GameMode.OSU, RankingType.PERFORMANCE)
