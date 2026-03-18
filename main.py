@@ -1,13 +1,16 @@
+from xml.etree.ElementTree import tostring
+
 import discord
 from discord.ext import commands
 import logging
 from dotenv import load_dotenv
 import os
 
-from ossapi import Ossapi, RankingType, GameMode
+from ossapi import Ossapi, UserLookupKey, RankingType, GameMode  # Python wrapper for the osu! API. Documentation: https://tybug.dev/ossapi/index.html
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
+print(token)
 
 # discord api stuff
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
@@ -16,15 +19,15 @@ intents.message_content = True
 intents.members = True
 
 # create client
-client_id = 3852530
-client_secret = 1
+client_id = 48481
+client_secret = "bsjuwhP1SRJ3b3qhD9iDraxnLoQOtc2KHsU9Ehe5"
 api = Ossapi(client_id,client_secret)
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"My penis hurt, {bot.user.name}")
+    print(f"Test message here, {bot.user.name}")
 
 @bot.event
 async def on_message(message):
@@ -35,6 +38,12 @@ async def on_message(message):
 
         await bot.process_commands(message)
 
-top50 = api.ranking(GameMode.OSU, RankingType.PERFORMANCE)
-print(top50.ranking[0].user.username)
+
+@bot.command()
+async def rank(ctx, arg):
+    await ctx.send(arg)
+
+
+top = api.ranking(GameMode.OSU, RankingType.PERFORMANCE)
+print(top.ranking[0].user.username)
 bot.run(token, log_handler=handler, log_level=logging.DEBUG)
